@@ -12,8 +12,8 @@ void selection_sort(int *array, size_t size)
 {
 	unsigned int i, j, min_idx;
 
-    if (!array)
-        return;
+	if (!array)
+		return;
 
 	for (i = 0; i < size - 1; i++)
 	{
@@ -22,11 +22,11 @@ void selection_sort(int *array, size_t size)
 			if (array[j] < array[min_idx])
 				min_idx = j;
 
-        if (i != min_idx)
-        {
-		    swap(&array[min_idx], &array[i]);
-		    print_array(array, size);
-        }
+		if (i != min_idx)
+		{
+			swap(&array[min_idx], &array[i]);
+			print_array(array, size);
+		}
 	}
 }
 
