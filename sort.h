@@ -23,6 +23,8 @@ void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);
 void quick_sort(int *array, size_t size);
 void selection_sort(int *array, size_t size);
+size_t partition(int array[], size_t size);
+void print_sort(int array[], size_t size, int init);
 
 /* Prototypes for advanced tasks */
 void shell_sort(int *array, size_t size);
@@ -40,5 +42,6 @@ void print_array(const int *array, size_t size);
 
 /* Prototypes for helper functions */
 void swap(int *a, int *b);
+void heapify(int *array, int end, int start, size_t size);
 
 #endif /* SORT_H */
