@@ -1,58 +1,37 @@
 #include "sort.h"
 
 /**
- * swap - Function that swaps two values
- *
- * @a: Fisrt value
- * @b: Second value
- * Return: 0
- */
-void swap(int *a, int *b)
-{
-	int tmp;
-
-	tmp = *b;
-	*b = *a;
-	*a = tmp;
-}
-
-/**
- * gap_sort - sort array with gaps
- * @array: array to be sorted
- * @size: size of array
- * @gap: gap size
- */
-void gap_sort(int *array, size_t size, unsigned int gap)
-{
-	size_t j, k;
-
-	for (j = gap; j < size; j++)
-	{
-		k = j;
-		while (k >= gap && array[k] < array[k - gap])
-		{
-			swap(array + k, array + k - gap);
-			k -= gap;
-		}
-	}
-}
-
-/**
- * shell_sort - shell sort
- * @array: array to be sorted
- * @size: size of array
- */
+  * shell_sort - A function tat sorts an array usin shell algorithm.
+  * @array: The array to sort.
+  * @size: The length of the array.
+  * Return: Nothing.
+  */
 void shell_sort(int *array, size_t size)
 {
-	unsigned int gap = 1;
+	unsigned int i = 0, j = 0, gap = 0;
+	int aux = 0;
+
+	if (array == NULL || size < 2)
+		return;
 
 	while (gap < size / 3)
 		gap = gap * 3 + 1;
 
-	while (gap >= 1)
+	for (; gap > 0; gap = (gap - 1) / 3)
 	{
-		gap_sort(array, size, gap);
-		gap = (gap - 1) / 3;
+		for (i = gap; i < size; i++)
+		{
+			aux = array[i];
+			for (j = i; j >= gap && array[j - gap] > aux;
+					j -= gap)
+			{
+				if (array[j] != array[j - gap])
+					array[j] = array[j - gap];
+			}
+			if (array[j] != aux)
+				array[j] = aux;
+
+		}
 		print_array(array, size);
 	}
 }
